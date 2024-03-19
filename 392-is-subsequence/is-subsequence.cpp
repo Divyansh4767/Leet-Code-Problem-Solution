@@ -2,12 +2,12 @@ class Solution {
 public:
     int solve(int i, int j, string s, string t, vector<vector<int>> &dp){
         //base case
-        if(i < 0)   return 1;
-        if(j < 0)   return 0;
+        if(i < 0)   return 1;   //there is a sub-sequence present
+        if(j < 0)   return 0;   //there is no sub-sequence present
         if(dp[i][j] != -1)  return dp[i][j];
 
         if(s[i] == t[j]){
-            return dp[i][j] = solve(i-1, j-1, s, t, dp) + solve(i, j-1, s, t, dp);
+            return dp[i][j] = solve(i-1, j-1, s, t, dp); //+ solve(i, j-1, s, t, dp);
         }
         else{
             return dp[i][j] = solve(i, j-1, s, t, dp);

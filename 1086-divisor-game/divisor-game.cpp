@@ -1,6 +1,8 @@
 class Solution {
 public:
     bool divisorGame(int n) {
-        return n%2 == 0;
+        if(n%2) 
+            return 0;
+        return 1;
     }
 };

@@ -9,7 +9,7 @@ public:
         for(int j=0;j<nums.size();j++){
             prod *= nums[j];
 
-            for(;prod>=k&&i<=j;++i){
+            for(;prod>=k && i<=j;i++){
                 prod /= nums[i];
             }
 

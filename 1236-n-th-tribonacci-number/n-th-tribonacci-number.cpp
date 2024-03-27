@@ -1,21 +1,20 @@
 class Solution {
 public:
-    int solve(int n){
-        int prev2 = 0;
-        int prev1 = 1;
-        int curr = 1;
-
-        for(int i=2;i<=n;i++){
-            int sum = curr + prev1 + prev2;
-            prev2 = prev1;
-            prev1 = curr;
-            curr = sum;
+    int tri(int t1, int t2, int t3, int n) {
+        if (n == 1) {
+            return t3+t2+t1;
         }
-        return curr;
+        int t4 = t1 + t2 + t3;
+        int ans=tri(t2, t3, t4, n - 1);
+        return ans;
     }
+    
     int tribonacci(int n) {
-        if(n == 0)  
+        if(n==0){
             return 0;
-        return solve(n-1);
+        }else if(n==1 || n==2){
+            return 1;
+        }
+        return tri(0, 1, 1, n-2);
     }
 };

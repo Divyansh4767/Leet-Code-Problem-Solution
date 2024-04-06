@@ -2,30 +2,36 @@
 class Solution {
 public:
     string minRemoveToMakeValid(string s) {
-        string t;
-        int diff = 0, n = s.size();
+        stack<char> st;
+        for (int i = 0; i < s.length(); i++) {
+            if (s[i] == '(') {
+                st.push(s[i]);
+            }
+            else if (s[i] == ')') {
+                if(!st.empty() && st.top() == '(') {
+                    st.pop();
+                } else if (st.empty()){
+                    s[i] = '.';
+                }
+            }
+        }
 
-        for(char c: s){
-            diff += (c == '(') - (c == ')');
-            if (diff >= 0){
-                t.push_back(c);
-            } else{
-                diff = 0;
+        for (int i = s.size()-1; i >= 0; i--) {
+            //To remove redundant '('
+            if (!st.empty() && s[i] == '(') {
+                s[i] = '.';
+                st.pop();
+            } else if (st.empty()) {
+                break;
             }
         }
-        
-        diff=0;
-        s="";
-        for(int i=t.size()-1;i>=0;i--){
-            char c = t[i];
-            diff += (c == '(') - (c == ')');
-            if (diff <= 0){
-                s.push_back(c);
-            } else{ 
-                diff = 0;
+        //To remove all the redundant brackets '(' or ')'
+        for (int i = 0; i < s.size(); i++) {
+            if (s[i] == '.') {
+                s.erase(s.begin() + i);
+                i--;
             }
         }
-        reverse(s.begin(), s.end());
         return s;
     }
 };

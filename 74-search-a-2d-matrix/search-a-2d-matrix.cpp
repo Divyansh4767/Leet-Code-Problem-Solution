@@ -4,6 +4,7 @@ public:
         int n = matrix.size(), m = matrix[0].size();
         int low = 0, high = (n*m) - 1;
         //Consider it as a 1D matrix, use the formula in line 10 to make it happen
+        //Most Optimal Soln
         while(low <= high){
 
             int mid = (low+high)/2;
@@ -12,11 +13,9 @@ public:
             if(matrix[row][col] == target){
                 return true;
             }
-
             else if(matrix[row][col] < target){
                 low = mid + 1;
             }
-            
             else{
                 high = mid - 1;
             }

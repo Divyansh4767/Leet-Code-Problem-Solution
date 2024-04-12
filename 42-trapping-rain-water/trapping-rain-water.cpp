@@ -2,9 +2,9 @@ class Solution {
 public:
     int trap(vector<int>& height) {
         int n = height.size(), countWater = 0;
-        vector<int> left(n);
-        vector<int> right(n);
-        
+        int left[n];
+        int right[n];
+
         left[0] = height[0];
         for(int i=1;i<n;i++){
             left[i] = max(left[i-1], height[i]);

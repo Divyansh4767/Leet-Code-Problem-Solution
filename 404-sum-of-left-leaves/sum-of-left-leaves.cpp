@@ -11,22 +11,12 @@
  */
 class Solution {
 public:
-    int sumOfNodes;
-    void dfs(TreeNode* node){
-        if(node -> left != nullptr){
-            if(node -> left -> left == nullptr && node -> left -> right == nullptr){
-                sumOfNodes += node -> left -> val;
-            }
-            dfs(node -> left);
-        }
-        if(node -> right != nullptr){
-            dfs(node -> right);
-        }
-    }
-
     int sumOfLeftLeaves(TreeNode* root) {
-        sumOfNodes = 0;
-        dfs(root);
-        return sumOfNodes;
+        if(root == NULL)  return 0;
+        int sumofNodes = 0;
+        if(root -> left != NULL && root -> left -> left == NULL && root -> left -> right == NULL){
+            sumofNodes += root -> left ->val;
+        }
+        return (sumofNodes + sumOfLeftLeaves(root -> left) + sumOfLeftLeaves(root -> right));
     }
 };
